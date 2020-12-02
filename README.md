@@ -6,6 +6,7 @@
 | ---------- | ------ | ------------------------- |
 | nickname   | string | null: false               |
 | mail       | string | null: false, unique: true |
+| password   | string | null: false               |
 | first_name | string | null: false               |
 | last_name  | string | null: false               |
 | kana_first | string | null: false               |
@@ -18,29 +19,29 @@
 
 ## items テーブル
 
-| Column      | Type    | Options                        |
-| ----------- | ------- | ------------------------------ |
-| item_name   | string  | null: false                    |
-| explanation | text    | null: false                    |
-| category    | string  | null: false                    |
-| status      | string  | null: false                    |
-| shipping    | string  | null: false                    |
-| prefectures | string  | null: false                    |
-| days        | date    | null: false                    |
-| money       | integer | null: false                    |
-| seller      | string  | null: false, foreign_key: true |
+| Column         | Type    | Options                        |
+| -------------- | ------- | ------------------------------ |
+| item_name      | string  | null: false                    |
+| explanation    | text    | null: false                    |
+| category_id    | integer  | null: false                    |
+| status_id      | integer | null: false                    |
+| shipping_id    | integer | null: false                    |
+| prefectures_id | integer | null: false                    |
+| days_id        | integer | null: false                    |
+| money          | integer | null: false                    |
+| user           | string  | null: false, foreign_key: true |
 
 ### Association
-- belong_to :users
-- has_one :shoppings
+- belong_to :user
+- has_one :shopping
+- has_one :item
 
 ## shoppings テーブル
 
-| Column    | Type   | Options                        |
-| --------- | ------ | ------------------------------ |
-| buyer     | string | null: false, foreign_key: true |
-| when      | date   | null: false                    |
-| buy_item  | string | null: false, foreign_key: true |
+| Column | Type   | Options                        |
+| ------ | ------ | ------------------------------ |
+| user   | string | null: false, foreign_key: true |
+| item   | string | null: false, foreign_key: true |
 
 ### Association
 - belong_to :user
@@ -48,14 +49,14 @@
 
 ## address
 
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| postal_code     | string | null: false |
-| buy_prefectures | string | null: false |
-| city            | string | null: false |
-| city_number     | tex    | null: false |
-| building        | text   |
-| tel             | text   | null: false |
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| postal_code        | string  | null: false |
+| buy_prefectures_id | integer | null: false |
+| city               | string  | null: false |
+| city_number        | string  | null: false |
+| building           | string  |
+| tel                | string  | null: false |
 
 ### Association
-- has_one :shoppings
+- has_one :shopping
