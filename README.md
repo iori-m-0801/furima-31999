@@ -5,7 +5,7 @@
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
 | nickname           | string | null: false               |
-| mail               | string | null: false, unique: true |
+| email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
 | first_name         | string | null: false               |
 | last_name          | string | null: false               |
@@ -19,17 +19,17 @@
 
 ## items テーブル
 
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| name           | string     | null: false                    |
-| explanation    | text       | null: false                    |
-| category_id    | integer    | null: false                    |
-| status_id      | integer    | null: false                    |
-| shipping_id    | integer    | null: false                    |
-| prefectures_id | integer    | null: false                    |
-| days_id        | integer    | null: false                    |
-| money          | integer    | null: false                    |
-| user           | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| name          | string     | null: false                    |
+| explanation   | text       | null: false                    |
+| category_id   | integer    | null: false                    |
+| status_id     | integer    | null: false                    |
+| shipping_id   | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| days_id       | integer    | null: false                    |
+| money         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 - belong_to :user
@@ -49,15 +49,15 @@
 
 ## addresses テーブル
 
-| Column         | Type        | Options     |
-| -------------- | ----------- | ----------- |
-| postal_code    | string      | null: false |
-| prefectures_id | integer     | null: false |
-| city           | string      | null: false |
-| city_number    | string      | null: false |
-| building       | string      |
-| tel            | string      | null: false |
-| user           | references  | null: false, foreign_key: true |
+| Column        | Type        | Options     |
+| ------------- | ----------- | ----------- |
+| postal_code   | string      | null: false |
+| prefecture_id | integer     | null: false |
+| city          | string      | null: false |
+| city_number   | string      | null: false |
+| building      | string      |
+| tel           | string      | null: false |
+| user          | references  | null: false, foreign_key: true |
 
 ### Association
 - has_one :shopping
