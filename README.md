@@ -60,4 +60,4 @@
 | user          | references  | null: false, foreign_key: true |
 
 ### Association
-- has_one :shopping
+- belong_to :shopping
