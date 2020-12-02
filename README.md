@@ -32,7 +32,7 @@
 | user          | references | null: false, foreign_key: true |
 
 ### Association
-- belong_to :user
+- belongs_to :user
 - has_one :shopping
 
 ## shoppings テーブル
@@ -43,9 +43,9 @@
 | item   | references | null: false, foreign_key: true |
 
 ### Association
-- belong_to :user
+- belongs_to :user
 - has_one :address
-- has_one :item
+- belongs_to :item
 
 ## addresses テーブル
 
@@ -57,7 +57,7 @@
 | city_number   | string      | null: false |
 | building      | string      |
 | tel           | string      | null: false |
-| user          | references  | null: false, foreign_key: true |
+| shopping_id   | references  | null: false, foreign_key: true |
 
 ### Association
-- belong_to :shopping
+- belongs_to :shopping
