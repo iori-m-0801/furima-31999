@@ -21,7 +21,7 @@
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| item_name      | string     | null: false                    |
+| name           | string     | null: false                    |
 | explanation    | text       | null: false                    |
 | category_id    | integer    | null: false                    |
 | status_id      | integer    | null: false                    |
@@ -37,27 +37,27 @@
 
 ## shoppings テーブル
 
-| Column | Type   | Options                        |
-| ------ | ------ | ------------------------------ |
-| user   | string | null: false, foreign_key: true |
-| item   | string | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 - belong_to :user
 - has_one :address
 - has_one :item
 
-## address
+## addresses テーブル
 
-| Column         | Type    | Options     |
-| -------------- | ------- | ----------- |
-| postal_code    | string  | null: false |
-| prefectures_id | integer | null: false |
-| city           | string  | null: false |
-| city_number    | string  | null: false |
-| building       | string  |
-| tel            | string  | null: false |
-| user           | string  | null: false, foreign_key: true |
+| Column         | Type        | Options     |
+| -------------- | ----------- | ----------- |
+| postal_code    | string      | null: false |
+| prefectures_id | integer     | null: false |
+| city           | string      | null: false |
+| city_number    | string      | null: false |
+| building       | string      |
+| tel            | string      | null: false |
+| user           | references  | null: false, foreign_key: true |
 
 ### Association
 - has_one :shopping
