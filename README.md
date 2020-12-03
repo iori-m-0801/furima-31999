@@ -57,7 +57,7 @@
 | city_number   | string      | null: false |
 | building      | string      |
 | tel           | string      | null: false |
-| shopping_id   | references  | null: false, foreign_key: true |
+| shopping      | references  | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :shopping
