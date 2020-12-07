@@ -20,22 +20,22 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Password Include both letters and numbers"
     end
-    it "first_nameが空では登録できない" do
+    it "first_nameが全角（漢字・ひらがな・カタカナ）での入力でないと登録できない" do
       @user.first_name = ""
       @user.valid?
       expect(@user.errors.full_messages).to include "First_name can't be blank"
     end
-    it "last_nameが空では登録できない" do
+    it "last_nameが全角（漢字・ひらがな・カタカナ）での入力でないと登録できない" do
       @user.last_name = ""
       @user.valid?
       expect(@user.errors.full_messages).to include "Last_name can't be blank"
     end
-    it "kana_firstが空では登録できない" do
+    it "kana_firstが全角（カタカナ）での入力登録できない" do
       @user.kana_first = ""
       @user.valid?
       expect(@user.errors.full_messages).to include "Kana_first can't be blank"
     end
-    it "kana_lastが空では登録できない" do
+    it "kana_lastが全角（カタカナ）での入力登録できない" do
       @user.kana_last = ""
       @user.valid?
       expect(@user.errors.full_messages).to include "Kana_last can't be blank"
