@@ -12,9 +12,13 @@ RSpec.describe User, type: :model do
     end
     it "emailが空では登録できない" do
       @user.email = ""
-      @user.email = "aaaaaa"
       @user.valid?
       expect(@user.errors.full_messages).to include "Email can't be blank"
+    end
+    it "emailに@が含まれていない場合登録できない" do
+      @user.email = "aaaaaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Email is invalid"
     end
     it '重複したemailが存在する場合は登録できないこと' do
       @user.save
@@ -94,6 +98,9 @@ RSpec.describe User, type: :model do
       @user.birthday = ""
       @user.valid?
       expect(@user.errors.full_messages).to include "Birthday can't be blank"
+    end
+    it "すべての情報が正しいフォーマットで入力されていれば登録できる" do
+      expect(@user).to be_valid
     end
   end
 end
