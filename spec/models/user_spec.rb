@@ -22,21 +22,25 @@ RSpec.describe User, type: :model do
     end
     it "first_nameが全角（漢字・ひらがな・カタカナ）での入力でないと登録できない" do
       @user.first_name = ""
+      @user.first_name = "hoge"
       @user.valid?
       expect(@user.errors.full_messages).to include "First_name can't be blank"
     end
     it "last_nameが全角（漢字・ひらがな・カタカナ）での入力でないと登録できない" do
       @user.last_name = ""
+      @user.last_name = "hoge"
       @user.valid?
       expect(@user.errors.full_messages).to include "Last_name can't be blank"
     end
     it "kana_firstが全角（カタカナ）での入力登録できない" do
       @user.kana_first = ""
+      @user.kana_first = "hoge"
       @user.valid?
       expect(@user.errors.full_messages).to include "Kana_first can't be blank"
     end
     it "kana_lastが全角（カタカナ）での入力登録できない" do
       @user.kana_last = ""
+      @user.kana_last = "hoge"
       @user.valid?
       expect(@user.errors.full_messages).to include "Kana_last can't be blank"
     end
