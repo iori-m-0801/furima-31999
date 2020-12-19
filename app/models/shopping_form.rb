@@ -9,6 +9,8 @@ class ShoppingForm
     validates :city_number
     validates :tel, numericality: {only_integer: true}, length: { minimum: 11 }
     validates :token
+    validates :user_id
+    validates :item_id
   end
   validates :prefecture, numericality: { other_than: 1}
 

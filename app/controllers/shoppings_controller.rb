@@ -1,8 +1,8 @@
 class ShoppingsController < ApplicationController
   before_action :authenticate_user!
+  before_action @item = Item.find(params[:item_id])
 
   def index
-    @item = Item.find(params[:item_id])
     redirect_to root_path unless current_user.id != @item.user_id
     redirect_to root_path if @item.shopping.present?
     @shopping_form = ShoppingForm.new
@@ -10,7 +10,6 @@ class ShoppingsController < ApplicationController
 
   def create
     @shopping_form = ShoppingForm.new(shopping_params)
-    @item = Item.find(params[:item_id])
       if @shopping_form.valid?
         pay_item
         @shopping_form.save
