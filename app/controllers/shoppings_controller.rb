@@ -3,8 +3,7 @@ class ShoppingsController < ApplicationController
   before_action @item = Item.find(params[:item_id])
 
   def index
-    redirect_to root_path unless current_user.id != @item.user_id
-    redirect_to root_path if @item.shopping.present?
+    redirect_to root_path if current_user.id == @item.user_id || @item.shopping.present?
     @shopping_form = ShoppingForm.new
   end
 

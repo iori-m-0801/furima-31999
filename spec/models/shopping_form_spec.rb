@@ -26,6 +26,10 @@ RSpec.describe ShoppingForm, type: :model do
       @shopping.valid?
       expect(@shopping.errors.full_messages).to include "City number can't be blank"
     end
+    it "建物名は空でも購入できる" do
+      @shopping.building = ""
+      expect(@shopping).to be_valid
+    end
     it "電話番号が空だと購入できない" do
       @shopping.tel = ""
       @shopping.valid?
@@ -42,9 +46,9 @@ RSpec.describe ShoppingForm, type: :model do
       expect(@shopping.errors.full_messages).to include "Tel is not a number"
     end
     it "電話番号は11桁以内でないと購入できない" do
-      @shopping.tel = "090-123456789"
+      @shopping.tel = "090123456789"
       @shopping.valid?
-      expect(@shopping.errors.full_messages).to include "Tel is not a number"
+      expect(@shopping.errors.full_messages).to include "Tel is too long (maximum is 11 characters)"
     end
     it "tokenが空では登録できないこと" do
       @shopping.token = ""
