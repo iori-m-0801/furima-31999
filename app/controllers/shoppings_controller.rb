@@ -1,6 +1,6 @@
 class ShoppingsController < ApplicationController
   before_action :authenticate_user!
-  before_action @item = Item.find(params[:item_id])
+  before_action :set_item
 
   def index
     redirect_to root_path if current_user.id == @item.user_id || @item.shopping.present?
@@ -22,6 +22,10 @@ class ShoppingsController < ApplicationController
 
   def shopping_params
     params.require(:shopping_form).permit(:postal_code, :prefecture, :city, :city_number, :building, :tel).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
   def pay_item
