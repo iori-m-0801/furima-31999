@@ -26,10 +26,6 @@ RSpec.describe ShoppingForm, type: :model do
       @shopping.valid?
       expect(@shopping.errors.full_messages).to include "City number can't be blank"
     end
-    it "建物名は空でも購入できる" do
-      @shopping.building = ""
-      expect(@shopping).to be_valid
-    end
     it "電話番号が空だと購入できない" do
       @shopping.tel = ""
       @shopping.valid?
@@ -65,7 +61,13 @@ RSpec.describe ShoppingForm, type: :model do
       @shopping.valid?
       expect(@shopping.errors.full_messages).to include("Item can't be blank")
     end
-    it "必要な情報が適切に入力されていないと購入できない" do
+  end
+  context '商品購入機能' do
+    it "建物名は空でも購入できる" do
+      @shopping.building = ""
+      expect(@shopping).to be_valid
+    end
+    it "必要な情報が適切に入力されていれば購入できる" do
       expect(@shopping).to be_valid
    end
   end
